@@ -552,6 +552,8 @@
             this.coords.x_pointer = x - this.coords.x_gap;
 
             this.calc();
+
+            this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
         },
 
         pointerUp: function (e) {
@@ -580,6 +582,8 @@
             if (is_old_ie) {
                 $("*").prop("unselectable", false);
             }
+
+            this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
         },
 
         pointerDown: function (target, e) {
@@ -629,6 +633,8 @@
             }
 
             this.$cache.line.trigger("focus");
+
+            this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
         },
 
         pointerClick: function (target, e) {
@@ -649,6 +655,7 @@
             this.calc();
 
             this.$cache.line.trigger("focus");
+            this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
         },
 
         key: function (target, e) {
@@ -950,8 +957,6 @@
             }
 
             this.drawHandles();
-
-            this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
         },
 
         drawHandles: function () {
